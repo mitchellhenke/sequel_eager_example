@@ -58,5 +58,7 @@ Song.create(album: kanye_album, name: 'Kanye Song 3')
 Song.create(album: kanye_album, name: 'Kanye Song 4')
 
 artists = Artist.eager(two_albums: { proc { |ds| ds.where(Sequel.ilike(:name, 'The%')) } => :songs } ).all
-puts 'should be no queries below this'
+
+puts "\n** should be no queries below this **\n\n"
+
 artists.map { |a| a.two_albums.map { |ab| ab.songs } }
