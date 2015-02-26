@@ -5,6 +5,9 @@ require 'logger'
 DB = Sequel.connect('postgres://localhost/sequel_example', logger: Logger.new(STDOUT))
 # DB = Sequel.connect('sqlite://sequel_example.db', logger: Logger.new(STDOUT))
 
+# FIXES IT vvvvv
+Sequel::Dataset::NON_SQL_OPTIONS << :eager
+
 DB.create_table? :artists do
   primary_key :id
   String :name
